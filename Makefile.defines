@@ -1,0 +1,20 @@
+#
+#This is the 'Makefile.defines' that almost every 'Makefile' in the source directories below this directory include.
+#the '../' in the pathnames actually refer to this directory, since 'make' is execute in all the subdirectoies of this directory.
+#
+#
+
+CC = gcc
+CFLAGS = -I../lib -g -O2 -D_REENTRANT -Wall
+LIBS = ../libunp.a -lresolv -lpthread
+LIBS_XTI =  ../libunpxti.a ../libunp.a -lresolv -lpthread
+RANLIB = ranlib
+
+#Following is the main library, built from all the object files in the lib/ and libfree/ directories
+LIBUNP_NAME = ../libunp.a
+
+#Following are all the object files to create in the lib/ directory
+LIB_OBJS = readline.o error.o wraplib.o wrapsock.o wrapunix.o wrapstdio.o writen.o str_echo.o str_cli.o 
+
+CLEANFILES = core core.* *.core *.o temp.* *.out typescript* \
+			 *.lc *.lh *.bsdi *.sparc *.uw
