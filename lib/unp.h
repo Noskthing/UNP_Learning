@@ -26,6 +26,8 @@
 #define MAXLINE 4096 /* max text line length */
 #define BUFFSIZE 8192 /* buffer size for reads and writes */ 
 
+typedef void Sigfunc(int);		/* For signal handlers */
+
 /*
  POSIX requires that an #include of <poll.h> definE INFTIM, but many systems still DefinE it in <sys/stropts.h>. 
  We don't want to include all the STREAMS stuff if it' not needed, so we just DefinE INFTIM here.
@@ -38,6 +40,8 @@
 #define INFTIM_UNPH		/* tell unpxti.h we defined it */ 
 #endif
 #endif
+
+Sigfunc *Signal(int signo, Sigfunc *func);
 
 ssize_t	Readline(int fd, void *ptr, size_t maxlen);
 void Writen(int fd, void *ptr, size_t nbytes);
