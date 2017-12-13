@@ -1,6 +1,6 @@
 include ../Makefile.defines
 
-PROGS = udpserv01 udpcli01 udpcliaddr udpcliconnect
+PROGS = udpserv01 udpcli01 udpcliaddr udpcliconnect udpcliloop udpservloop
 
 all: 	${PROGS}
 
@@ -15,6 +15,12 @@ udpcliaddr: udpcliaddr.o dgcliaddr.o
 
 udpcliconnect: udpcli01.o dgcliconnect.o
 	${CC} ${CFLAGS} -o $@ udpcli01.o dgcliconnect.o ${LIBS}
+
+udpcliloop: udpcli01.o dgcliloop.o
+	${CC} ${CFLAGS} -o $@ udpcli01.o dgcliloop.o ${LIBS}
+
+udpservloop: udpserv01.o dgecholoop.o
+	${CC} ${CFLAGS} -o $@ udpserv01.o dgecholoop.o ${LIBS}
 
 clean:
 	rm -f ${PROGS} ${CLEANFILES}
