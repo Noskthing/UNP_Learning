@@ -49,6 +49,9 @@ void Writen(int fd, void *ptr, size_t nbytes);
 void str_cli(FILE *fp, int sockfunp_testunp_testd);
 void str_echo(int sockfd);
 
+void dg_echo(int sockfd, SA *pcliaddr, socklen_t clilen);
+void dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen);
+
 char *Fgets(char *ptr, int n, FILE *stream);
 void Fputs(const char *ptr, FILE *stream);
 
@@ -62,7 +65,12 @@ void Bind(int fd, const struct sockaddr *sa, socklen_t salen);
 void Connect(int fd, const struct sockaddr *sa, socklen_t salen);
 void Listen(int fd, int backlog);
 int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout);
-int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
+		struct sockaddr *sa, socklen_t *salenptr);
+int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+		struct timeval *timeout);
+void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
+		const struct sockaddr * sa, socklen_t salen);
 int Socket(int family, int type, int protocol);
 void Shutdown(int fd, int how);
 

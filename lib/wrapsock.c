@@ -59,6 +59,16 @@ int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
 	return(n);
 }
 
+ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
+		struct sockaddr *sa, socklen_t *salenptr)
+{
+	ssize_t		n;
+
+	if ( (n = recvfrom(fd, ptr, nbytes, flags, sa, salenptr)) < 0)
+		err_sys("recvfrom error");
+	return(n);
+}
+
 int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
 {
 	int		n;
@@ -67,6 +77,18 @@ int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struc
 		err_sys("select error");
 
 	return(n);
+}
+
+/*
+ 原函数sendto()是返回一个ssize_t类型的结果告知发送的字节数
+ 这里的包裹函数去掉了返回结果，只关心发送是成功还是失败
+ 调用sendto()之后比对返回结果和预期进行判断
+ */
+void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
+		const struct sockaddr * sa, socklen_t salen)
+{
+	if (sendto(fd, ptr, nbytes, flags, sa, salen) != (ssize_t)nbytes)
+		err_sys("sendto error");
 }
 
 int Socket(int family, int type, int protocol)
