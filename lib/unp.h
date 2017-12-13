@@ -76,6 +76,7 @@ void Shutdown(int fd, int how);
 
 void Close(int fd);
 pid_t Fork(void);
+void *Malloc(size_t size);
 ssize_t Read(int fd, void *ptr, size_t nbytes);
 void Write(int fd, void *ptr, size_t nbytes);
 
