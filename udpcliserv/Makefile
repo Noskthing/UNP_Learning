@@ -1,6 +1,6 @@
 include ../Makefile.defines
 
-PROGS = udpserv01 udpcli01 udpcliaddr udpcliconnect udpcliloop udpservloop udpcliipaddr
+PROGS = udpserv01 udpcli01 udpcliaddr udpcliconnect udpcliloop udpservloop udpcliipaddr udpservselect
 
 all: 	${PROGS}
 
@@ -24,6 +24,9 @@ udpservloop: udpserv01.o dgecholoop.o
 
 udpcliipaddr: udpcliipaddr.o
 	${CC} ${CFLAGS} -o $@ udpcliipaddr.o ${LIBS}
+
+udpservselect: udpservselect.o sigchldwaitpid.o
+	${CC} ${CFLAGS} -o $@ udpservselect.o sigchldwaitpid.o ${LIBS}
 
 clean:
 	rm -f ${PROGS} ${CLEANFILES}

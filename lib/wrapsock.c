@@ -85,6 +85,12 @@ int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struc
 	return(n);
 }
 
+void Setsockopt(int fd, int level, int optname, const void *optval, socklen_t optlen)
+{
+	if(setsockopt(fd, level, optname, optval, optlen) < 0)
+		err_sys("setsockopt error");
+}
+
 /*
  原函数sendto()是返回一个ssize_t类型的结果告知发送的字节数
  这里的包裹函数去掉了返回结果，只关心发送是成功还是失败
@@ -100,7 +106,6 @@ void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
 int Socket(int family, int type, int protocol)
 {
     int		n;
-    
     if ( (n = socket(family, type, protocol)) < 0)
         err_sys("socket error");
     return(n);

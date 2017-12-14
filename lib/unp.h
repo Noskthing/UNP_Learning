@@ -41,6 +41,8 @@ typedef void Sigfunc(int);		/* For signal handlers */
 #endif
 #endif
 
+#define min(a,b)	((a) < (b))? (a) : (b)
+#define max(a,b)	((a) > (b))? (a) : (b)
 Sigfunc *Signal(int signo, Sigfunc *func);
 
 ssize_t	Readline(int fd, void *ptr, size_t maxlen);
@@ -70,6 +72,7 @@ ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
 		struct sockaddr *sa, socklen_t *salenptr);
 int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
 		struct timeval *timeout);
+void Setsockopt(int fd, int level, int optname, const void *optval, socklen_t optlen);
 void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
 		const struct sockaddr * sa, socklen_t salen);
 int Socket(int family, int type, int protocol);
