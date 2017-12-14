@@ -63,6 +63,7 @@ char *Sock_ntop(const struct sockaddr *sa, socklen_t salen);
 int Accept(int fd, struct sockaddr *sa, socklen_t *salenptr);
 void Bind(int fd, const struct sockaddr *sa, socklen_t salen);
 void Connect(int fd, const struct sockaddr *sa, socklen_t salen);
+void Getsockname(int fd, struct sockaddr *sa, socklen_t *salenptr);
 void Listen(int fd, int backlog);
 int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout);
 ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
