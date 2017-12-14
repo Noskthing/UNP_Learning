@@ -17,6 +17,8 @@
 #include <unistd.h>
 #include <sys/poll.h>
 
+#include <netdb.h>
+
 #define SA struct sockaddr 
 #define LISTENQ 1024
 
@@ -86,5 +88,6 @@ void Write(int fd, void *ptr, size_t nbytes);
 
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);
+void err_msg(const char *fmt, ...);
 
 #endif
