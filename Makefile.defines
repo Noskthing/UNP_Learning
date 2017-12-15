@@ -14,7 +14,8 @@ RANLIB = ranlib
 LIBUNP_NAME = ../libunp.a
 
 #Following are all the object files to create in the lib/ directory
-LIB_OBJS = readline.o error.o wraplib.o wrapsock.o wrapunix.o wrapstdio.o writen.o str_echo.o str_cli.o sock_ntop.o signal.o dg_echo.o dg_cli.o
+LIB_OBJS = readline.o error.o wraplib.o wrapsock.o wrapunix.o wrapstdio.o writen.o str_echo.o str_cli.o sock_ntop.o signal.o dg_echo.o dg_cli.o \
+		   tcp_connect.o sock_ntop_host.o tcp_listen.o
 
 CLEANFILES = core core.* *.core *.o temp.* *.out typescript* \
 			 *.lc *.lh *.bsdi *.sparc *.uw

@@ -17,7 +17,11 @@
 #include <unistd.h>
 #include <sys/poll.h>
 
+#include<signal.h>
+
 #include <netdb.h>
+
+#include <sys/un.h>
 
 #define SA struct sockaddr 
 #define LISTENQ 1024
@@ -63,11 +67,13 @@ const char *Inet_ntop(int family, const void *addrptr, char *strptr, size_t len)
 void Inet_pton(int family, const char *strptr, void *addrptr);
 
 char *Sock_ntop(const struct sockaddr *sa, socklen_t salen);
+char *Sock_ntop_host(const struct sockaddr *sa, socklen_t salen);
 
 int Accept(int fd, struct sockaddr *sa, socklen_t *salenptr);
 void Bind(int fd, const struct sockaddr *sa, socklen_t salen);
 void Connect(int fd, const struct sockaddr *sa, socklen_t salen);
 void Getsockname(int fd, struct sockaddr *sa, socklen_t *salenptr);
+void Getpeername(int, SA *, socklen_t *);
 void Listen(int fd, int backlog);
 int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout);
 ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
@@ -86,8 +92,12 @@ void *Malloc(size_t size);
 ssize_t Read(int fd, void *ptr, size_t nbytes);
 void Write(int fd, void *ptr, size_t nbytes);
 
+int Tcp_connect(const char *host, const char *serv);
+int Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp);
+
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);
 void err_msg(const char *fmt, ...);
+void err_ret(const char *fmt, ...);
 
 #endif

@@ -1,8 +1,6 @@
 #include "unp.h"
 
-#ifdef HAVE_SOCKADDR_DL_STRUCT
 #include <net/if_dl.h>
-#endif
 
 /* include sock_ntop */
 char *sock_ntop(const struct sockaddr *sa, socklen_t salen)
@@ -28,7 +26,6 @@ char *sock_ntop(const struct sockaddr *sa, socklen_t salen)
 			}
 			return(str);
 		}
-#ifdef	IPV6
 		case AF_INET6:
 		{
 			struct sockaddr_in6 *sin6 = (struct sockaddr_in6 *)sa;
@@ -44,9 +41,19 @@ char *sock_ntop(const struct sockaddr *sa, socklen_t salen)
 			}
 			return(str + 1);
 		}
-#endif
+		case AF_UNIX:
+		{
+			struct sockaddr_un *unp = (struct sockadr_un *) sa;
+
+			if (unp->sun_path[0] == 0)
+				strcpy(str, "(no pathname bound)");
+			else
+				snprintf(str, sizeof(str), "%s", unp->sun_path);
+			return(str);
+		}
 		default:
 			snprintf(str, sizeof(str), "sock_ntop: unknown AF_xxx: %d, len %d", sa->sa_family, salen);
+			return(str);
 	}
 	return(NULL);
 }
