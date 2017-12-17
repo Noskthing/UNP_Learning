@@ -94,6 +94,9 @@ void Write(int fd, void *ptr, size_t nbytes);
 
 int Tcp_connect(const char *host, const char *serv);
 int Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp);
+int Udp_client(const char *host, const char *serv, SA **saptr, socklen_t *lenp);
+int Udp_connect(const char *host, const char *serv);
+int Udp_server(const char *host, const char *serv, socklen_t *addrlenp);
 
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);
