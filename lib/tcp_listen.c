@@ -6,9 +6,10 @@ int tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 	const int		on = 1;
 	struct addrinfo hints, *res, *ressave;
 
+	/* hints 可以为NULL ，也可以指定返回res的各项类型 */
 	bzero(&hints, sizeof(struct addrinfo));
-	hints.ai_flags = AI_PASSIVE;
-	hints.ai_family = AF_UNSPEC;
+	hints.ai_flags = AI_PASSIVE;	/* 典型的服务器进程只指定service而不是hostname. 同时设定AI_PASSIVE使得返回套接字地址包含INADDR_ANY和IN6ADDR_ANY_INIT */
+	hints.ai_family = AF_UNSPEC;	/* 返回适用于主机名和服务名且适合任意协议族的地址 */
 	hints.ai_socktype = SOCK_STREAM;
 
 	if ( (n = getaddrinfo(host, serv, &hints, &res)) != 0)
@@ -38,7 +39,7 @@ int tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 	if (addrlenp)
 		*addrlenp = res->ai_addrlen;
 
-	freeaddrinfo(ressave);
+	freeaddrinfo(ressave);	/* struct addrinfo *ai 应指向第一个addrinfo */
 
 	return(listenfd);
 }

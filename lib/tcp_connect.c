@@ -33,6 +33,7 @@ int tcp_connect(const char *host, const char *serv)
 	return(sockfd);
 }
 
+/* 和tcp_listen一样，该函数只在成功时返回，否则终止进程。如过需要提供错误码那么要引入新的参数。 这意味着包裹函数是没有意义的，这里添加只是为了统一性 */
 int Tcp_connect(const char *host, const char *serv)
 {
 	return(tcp_connect(host, serv));
