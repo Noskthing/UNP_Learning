@@ -23,6 +23,8 @@
 
 #include <sys/un.h>
 
+#include <fcntl.h>
+
 #define SA struct sockaddr 
 #define LISTENQ 1024
 
@@ -97,6 +99,9 @@ int Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp);
 int Udp_client(const char *host, const char *serv, SA **saptr, socklen_t *lenp);
 int Udp_connect(const char *host, const char *serv);
 int Udp_server(const char *host, const char *serv, socklen_t *addrlenp);
+
+int daemon_init(const char *pname, int facility);
+void daemon_inetd(const char *pname, int facility);
 
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);
