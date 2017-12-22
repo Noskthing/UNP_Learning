@@ -103,6 +103,9 @@ int Udp_server(const char *host, const char *serv, socklen_t *addrlenp);
 int daemon_init(const char *pname, int facility);
 void daemon_inetd(const char *pname, int facility);
 
+void Connect_timeo(int sockfd, const SA *sa, socklen_t salen, int nsec);
+int Readable_timeo(int fd, int sec);
+
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);
 void err_msg(const char *fmt, ...);
