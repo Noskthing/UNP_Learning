@@ -28,8 +28,14 @@
 #define SA struct sockaddr 
 #define LISTENQ 1024
 
+#ifndef AF_LOCAL
+#define AF_LOCAL	AF_UNIX
+#endif
+
 #define SERV_PORT 9877
 
+#define UNIXSTR_PATH	"/tmp/unix.str"	/* UNIX domain stream */
+#define UNIXDG_PATH		"/tmp/unix.dg"	/* UNIX domain datagram */
 /* Miscellaneous constants */
 #define MAXLINE 4096 /* max text line length */
 #define BUFFSIZE 8192 /* buffer size for reads and writes */ 
