@@ -1,6 +1,7 @@
 #ifndef __unp_h
 #define __unp_h
 
+#include "../config.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 
@@ -24,6 +25,8 @@
 #include <sys/un.h>
 
 #include <fcntl.h>
+
+#include <sys/uio.h>
 
 #define SA struct sockaddr 
 #define LISTENQ 1024
@@ -93,11 +96,13 @@ void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
 		const struct sockaddr * sa, socklen_t salen);
 int Socket(int family, int type, int protocol);
 void Shutdown(int fd, int how);
+void Socketpair(int family, int type, int protocol, int *fd);
 
 void Close(int fd);
 pid_t Fork(void);
 void *Malloc(size_t size);
 ssize_t Read(int fd, void *ptr, size_t nbytes);
+pid_t Waitpid(pid_t pid, int *iptr, int options);
 void Write(int fd, void *ptr, size_t nbytes);
 
 int Tcp_connect(const char *host, const char *serv);
@@ -111,6 +116,20 @@ void daemon_inetd(const char *pname, int facility);
 
 void Connect_timeo(int sockfd, const SA *sa, socklen_t salen, int nsec);
 int Readable_timeo(int fd, int sec);
+
+ssize_t Read_fd(int fd, void *ptr, size_t nbytes, int *recvfd);
+ssize_t Write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
+
+/* 在unp提供的源码里，声明了所有原函数和与其对应的包裹函数
+ * 通常情况下我们会使用包裹函数来处理错误
+ * 但部分情况下我们需要自己处理错误
+ * 这个时候我们需要使用原函数
+ * 之前的源码只提供了包裹函数
+ * 后续版本会更新上所有原函数
+*/
+	/* prototyptes for our own library functions */
+ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
+
 
 void err_quit(const char *fmt, ...);
 void err_sys(const char *fmt, ...);

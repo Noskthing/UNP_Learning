@@ -12,6 +12,7 @@
 │   ├── dgclitimeoselect.c
 │   ├── dgclitimeosig.c
 │   └── udpcli.c
+├── config.h
 ├── inetd
 │   ├── Makefile
 │   ├── daytimetcpsrvdaemon.c
@@ -24,6 +25,7 @@
 │   ├── dg_cli.c
 │   ├── dg_echo.c
 │   ├── error.c
+│   ├── read_fd.c
 │   ├── readable_timeo.c
 │   ├── readline.c
 │   ├── signal.c
@@ -41,6 +43,7 @@
 │   ├── wrapsock.c
 │   ├── wrapstdio.c
 │   ├── wrapunix.c
+│   ├── write_fd.c
 │   └── writen.c
 ├── names
 │   ├── Makefile
@@ -80,11 +83,14 @@
 │   ├── udpserv01.c
 │   └── udpservselect.c
 └── unixdomain
-    ├── Makefile
-    ├── sigchldwaitpid.c
-    ├── unixbind.c
-    ├── unixdgcli.c
-    ├── unixdgsrv.c
-    ├── unixstrcli.c
-    └── unixstrsrv.c
+├── Makefile
+├── mycat.c
+├── myopen.c
+├── openfile.c
+├── sigchldwaitpid.c
+├── unixbind.c
+├── unixdgcli.c
+├── unixdgsrv.c
+├── unixstrcli.c
+└── unixstrsrv.c
 ```

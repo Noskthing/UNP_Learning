@@ -122,3 +122,10 @@ void Shutdown(int fd, int how)
 	if (shutdown(fd, how) < 0)
 		err_sys("shutdown error");
 }
+
+void Socketpair(int family, int type, int protocol, int *fd)
+{
+	int		n;
+	if ( (n = socketpair(family, type, protocol, fd)) < 0)
+		err_sys("socketpair error");
+}

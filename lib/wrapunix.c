@@ -38,6 +38,15 @@ ssize_t Read(int fd, void *ptr, size_t nbytes)
 	return(n);
 }
 
+pid_t Waitpid(pid_t pid, int *iptr, int options)
+{
+	pid_t	retpid;
+
+	if ( (retpid = waitpid(pid, iptr, options)) == -1)
+		err_sys("waitpid error");
+	return(retpid);
+}
+
 void Write(int fd, void *ptr, size_t nbytes)
 {
 	if(write(fd, ptr, nbytes) != nbytes)

@@ -1,6 +1,6 @@
 include ../Makefile.defines
 
-PROGS = unixbind unixstrsrv unixstrcli unixdgsrv unixdgcli
+PROGS = unixbind unixstrsrv unixstrcli unixdgsrv unixdgcli openfile mycat
 
 all: ${PROGS}
 
@@ -18,6 +18,12 @@ unixdgsrv: unixdgsrv.o
 
 unixdgcli: unixdgcli.o
 	${CC} ${CFLAGS} -o $@ unixdgcli.o ${LIBS}
+
+openfile: openfile.o
+	${CC} ${CFLAGS} -o $@ openfile.o ${LIBS}
+
+mycat: mycat.o myopen.o
+	${CC} ${CFLAGS} -o $@ mycat.o myopen.o ${LIBS}
 
 clean: 
 	rm -f ${PROGS} ${CLEANFILES}
