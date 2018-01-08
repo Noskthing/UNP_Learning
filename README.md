@@ -87,10 +87,13 @@
 ├── mycat.c
 ├── myopen.c
 ├── openfile.c
+├── readcred.c
 ├── sigchldwaitpid.c
+├── strechocred.c
 ├── unixbind.c
 ├── unixdgcli.c
 ├── unixdgsrv.c
 ├── unixstrcli.c
+├── unixstrclicred.c
 └── unixstrsrv.c
 ```

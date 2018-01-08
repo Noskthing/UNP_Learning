@@ -58,6 +58,15 @@ typedef void Sigfunc(int);		/* For signal handlers */
 #endif
 #endif
 
+struct cmsgcred {
+	pid_t	cmcred_pid;		/* PID of sending process */
+	uid_t	cmcred_uid;		/* real UID of sending process */
+	uid_t	cmcred_euid;		/* effective UID of sending process */
+	gid_t	cmcred_gid;		/* real GID of sending process */
+	short	cmcred_ngroups;		/* number or groups */
+	gid_t	cmcred_groups[16];	/* groups */
+};
+
 #define min(a,b)	((a) < (b))? (a) : (b)
 #define max(a,b)	((a) > (b))? (a) : (b)
 Sigfunc *Signal(int signo, Sigfunc *func);
