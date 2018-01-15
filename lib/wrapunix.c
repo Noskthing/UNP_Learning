@@ -10,6 +10,15 @@ void Close(int fd)
 		err_sys("close error");
 }
 
+int Fcntl(int fd, int cmd, int arg)
+{
+	int		n;
+
+	if ( (n = fcntl(fd, cmd, arg)) == -1)
+		err_sys("fcntl error");
+	return(n);
+}
+
 pid_t Fork(void)
 {
 	pid_t	pid;

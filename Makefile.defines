@@ -17,7 +17,7 @@ LIBUNP_NAME = ../libunp.a
 LIB_OBJS = readline.o error.o wraplib.o wrapsock.o wrapunix.o wrapstdio.o writen.o str_echo.o str_cli.o sock_ntop.o signal.o dg_echo.o dg_cli.o \
 	 	   tcp_connect.o sock_ntop_host.o tcp_listen.o udp_client.o \
 		   udp_connect.o udp_server.o daemon_init.o daemon_inetd.o connect_timeo.o\
-		   readable_timeo.o read_fd.o write_fd.o
+		   readable_timeo.o read_fd.o write_fd.o gf_time.o
 
 CLEANFILES = core core.* *.core *.o temp.* *.out typescript* \
 			 *.lc *.lh *.bsdi *.sparc *.uw

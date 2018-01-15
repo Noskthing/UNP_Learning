@@ -108,6 +108,7 @@ void Shutdown(int fd, int how);
 void Socketpair(int family, int type, int protocol, int *fd);
 
 void Close(int fd);
+int Fcntl(int fd, int cmd, int arg);
 pid_t Fork(void);
 void *Malloc(size_t size);
 ssize_t Read(int fd, void *ptr, size_t nbytes);
@@ -138,6 +139,8 @@ ssize_t Write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 */
 	/* prototyptes for our own library functions */
 ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
+
+char *gf_time();
 
 
 void err_quit(const char *fmt, ...);
