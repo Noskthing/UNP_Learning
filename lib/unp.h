@@ -130,6 +130,12 @@ int Readable_timeo(int fd, int sec);
 ssize_t Read_fd(int fd, void *ptr, size_t nbytes, int *recvfd);
 ssize_t Write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 
+int connect_nonb(int sockfd, const SA* saptr, socklen_t salen, int nsec);
+
+char *gf_time();
+
+struct addrinfo *Host_serv(const char *host, const char *serv, int family, int socktype);
+
 /* 在unp提供的源码里，声明了所有原函数和与其对应的包裹函数
  * 通常情况下我们会使用包裹函数来处理错误
  * 但部分情况下我们需要自己处理错误
@@ -139,8 +145,11 @@ ssize_t Write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 */
 	/* prototyptes for our own library functions */
 ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
+struct addrinfo *host_serv(const char *host, const char *serv, int family, int socktype);
 
-char *gf_time();
+
+
+
 
 
 void err_quit(const char *fmt, ...);
