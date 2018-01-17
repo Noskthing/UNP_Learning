@@ -1,6 +1,6 @@
 include ../Makefile.defines
 
-PROGS = tcpclinonb tcpclifork web
+PROGS = tcpclinonb tcpclifork daytimetcpclinonb web
 
 all: 	${PROGS}
 
@@ -9,6 +9,9 @@ tcpclinonb: tcpcli.o strclinonb.o
 
 tcpclifork: tcpcli.o strclifork.o
 	${CC} ${CFLAGS} -o $@ tcpcli.o strclifork.o ${LIBS}
+
+daytimetcpclinonb: daytimetcpclinonb.o
+	${CC} ${CFLAGS} -o $@ daytimetcpclinonb.o ${LIBS}
 
 web: web.o home_page.o start_connect.o write_get_cmd.o
 	${CC} ${CFLAGS} -o $@ web.o home_page.o start_connect.o \
