@@ -68,6 +68,8 @@
 │   ├── strclifork.c
 │   ├── strclinonb.c
 │   ├── tcpcli.c
+│   ├── tcpclirst.c
+│   ├── tcpservselect.c
 │   ├── web.c
 │   ├── web.h
 │   ├── web.sh

@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 			clilen = sizeof(cliaddr);
 			connfd = Accept(listenfd, (SA*)&cliaddr, &clilen);
 
-#ifdef
+#ifdef	NOTDEF
 			printf("new client: %s, port %d\n",
 					Inet_ntop(AF_INET,&cliaddr.sin_addr, 4, NULL),
 					ntohs(cliaddr.sin_port));

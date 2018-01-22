@@ -144,6 +144,7 @@ struct addrinfo *Host_serv(const char *host, const char *serv, int family, int s
  * 后续版本会更新上所有原函数
 */
 	/* prototyptes for our own library functions */
+ssize_t	readline(int fd, void *ptr, size_t maxlen);
 ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 struct addrinfo *host_serv(const char *host, const char *serv, int family, int socktype);
 
